@@ -1343,10 +1343,10 @@ master_record_t *r = (master_record_t *)record;
 
 	_s = data_string;
 	slen = STRINGSIZE;
-	snprintf(_s, slen-1, "%s,%s,%.3f,%s,%s,%u,%u,%s,%s,%u,%u,%llu,%llu,%llu,%llu",
+	snprintf(_s, slen-1, "%s,%s,%.3f,%s,%s,%u,%u,%s,%s,%llu,%u,%u,%llu,%llu,%llu,%llu",
 		datestr1, datestr2, duration, as,ds,r->srcport, r->dstport, proto_str, flags_str, 
-		r->fwd_status, r->tos, (unsigned long long)r->dPkts, (unsigned long long)r->dOctets,
-		(long long unsigned)r->out_pkts, (long long unsigned)r->out_bytes
+		(long long unsigned) r->aggr_flows, r->fwd_status, r->tos, (unsigned long long)r->dPkts,
+		(unsigned long long)r->dOctets, (long long unsigned)r->out_pkts, (long long unsigned)r->out_bytes
 	);
 
 	_slen = strlen(data_string);
@@ -1602,7 +1602,7 @@ char *get_record_header(void) {
 
 void set_record_header(void) {
 
-	snprintf(header_string, STRINGSIZE-1, "ts,te,td,sa,da,sp,dp,pr,flg,fwd,stos,ipkt,ibyt,opkt,obyt,in,out,sas,das,smk,dmk,dtos,dir,nh,nhb,svln,dvln,ismc,odmc,idmc,osmc,mpls1,mpls2,mpls3,mpls4,mpls5,mpls6,mpls7,mpls8,mpls9,mpls10,cl,sl,al,ra,eng,exid,tr");
+	snprintf(header_string, STRINGSIZE-1, "ts,te,td,sa,da,sp,dp,pr,flg,fl,fwd,stos,ipkt,ibyt,opkt,obyt,in,out,sas,das,smk,dmk,dtos,dir,nh,nhb,svln,dvln,ismc,odmc,idmc,osmc,mpls1,mpls2,mpls3,mpls4,mpls5,mpls6,mpls7,mpls8,mpls9,mpls10,cl,sl,al,ra,eng,exid,tr");
 	header_string[STRINGSIZE-1] = '\0';
 
 } // End of format_csv_header
